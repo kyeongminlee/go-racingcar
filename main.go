@@ -3,29 +3,34 @@ package main
 import (
 	"fmt"
 	"math/rand"
+	"racingcar/domain"
 	"racingcar/view"
+	"time"
 )
 
-type car struct {
-	Distance string
-}
-
 func main() {
+	rand.Seed(time.Now().Unix())
+
 	numCars := view.InputCarNumbers()
-	numRounds := view.InputStageNumbers()
+	numStage := view.InputStageNumbers()
 
-	fmt.Println("실행 결과")
-
-	var cars = make([]car, numCars)
-
-	for i := 0; i < numRounds; i++ {
-		for j := 0; j < numCars; j++ {
-			randomNumber := rand.Intn(10)
-			if randomNumber >= 4 {
-				cars[j].Distance = fmt.Sprintf("%v-", cars[j].Distance)
-			}
-			fmt.Println(cars[j].Distance)
-		}
-		fmt.Println()
+	cars, err := domain.MakeCars(numCars)
+	if err != nil {
+		fmt.Println(err)
 	}
+
+	stages, err := domain.MakeStage(numStage)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	view.PrintResultMention()
+	for {
+		if stages.IsFinished() {
+			break
+		}
+		cars := stages.StartGame(cars)
+		view.PrintCarsStatus(cars)
+	}
+
 }
