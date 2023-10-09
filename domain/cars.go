@@ -43,3 +43,20 @@ func (c Cars) Run(movementStrategy MovementStrategy) Cars {
 
 	return c
 }
+
+func (c Cars) FindWinner() Cars {
+	var maxPosition int
+	var winnerCars []Car
+
+	for _, car := range c {
+		if maxPosition < car.position {
+			maxPosition = car.position
+			winnerCars = []Car{car}
+
+		} else if maxPosition == car.position {
+			winnerCars = append(winnerCars, car)
+		}
+	}
+
+	return winnerCars
+}

@@ -66,3 +66,54 @@ func TestMakeCars(t *testing.T) {
 		})
 	}
 }
+
+func TestFindWinner(t *testing.T) {
+	tests := []struct {
+		description string
+		cars        Cars
+		expected    []Car
+	}{
+		{
+			description: "Single winner",
+			cars: Cars{
+				Car{name: "Car1", position: 2},
+				Car{name: "Car2", position: 3},
+				Car{name: "Car3", position: 1},
+			},
+			expected: Cars{
+				Car{name: "Car2", position: 3},
+			},
+		},
+		{
+			description: "Multiple winners",
+			cars: Cars{
+				Car{name: "Car1", position: 2},
+				Car{name: "Car2", position: 3},
+				Car{name: "Car3", position: 3},
+				Car{name: "Car4", position: 1},
+			},
+			expected: Cars{
+				Car{name: "Car2", position: 3},
+				Car{name: "Car3", position: 3},
+			},
+		},
+	}
+
+	for _, test := range tests {
+		t.Run(test.description, func(t *testing.T) {
+			result := test.cars.FindWinner()
+
+			// 우승자 슬라이스의 길이 검증
+			if len(result) != len(test.expected) {
+				t.Errorf("Expected %d winner(s), but got %d", len(test.expected), len(result))
+			}
+
+			// 우승자의 이름과 위치 검증
+			for i, car := range result {
+				if car.name != test.expected[i].name || car.position != test.expected[i].position {
+					t.Errorf("Expected winner %v, but got %v", test.expected[i], car)
+				}
+			}
+		})
+	}
+}
