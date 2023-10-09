@@ -2,7 +2,6 @@ package domain
 
 import (
 	"errors"
-	"fmt"
 	"strings"
 )
 
@@ -32,15 +31,14 @@ func MakeCars(carNames string) (Cars, error) {
 
 func checkNameLength(name string) error {
 	if len(name) > CAR_NAME_LIMIT {
-		fmt.Println("error ", len(name))
 		return errors.New("자동차 이름은 5글자 초과할 수 없습니다.")
 	}
 	return nil
 }
 
-func (c Cars) Run() Cars {
+func (c Cars) Run(movementStrategy MovementStrategy) Cars {
 	for index, car := range c {
-		c[index] = car.Run(MakeRandomMovement())
+		c[index] = car.Run(movementStrategy)
 	}
 
 	return c

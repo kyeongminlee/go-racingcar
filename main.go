@@ -27,7 +27,7 @@ func main() {
 		if stages.IsFinished() {
 			break
 		}
-		cars := stages.StartGame(cars)
+		cars := stages.StartGame(cars, domain.MakeRandomMovement())
 		view.PrintCarsStatus(cars)
 	}
 

@@ -19,9 +19,9 @@ func MakeStage(numStage int) (*Stages, error) {
 	}, nil
 }
 
-func (s *Stages) StartGame(cars Cars) Cars {
+func (s *Stages) StartGame(cars Cars, movementStrategy MovementStrategy) Cars {
 	s.countDown()
-	cars = cars.Run()
+	cars = cars.Run(movementStrategy)
 
 	return cars
 }
