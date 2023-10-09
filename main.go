@@ -11,13 +11,11 @@ import (
 func main() {
 	rand.Seed(time.Now().Unix())
 
-	numCars := view.InputCarNumbers()
+	// numCars := view.InputCarNumbers()
+	carNames := view.InputCarNames()
 	numStage := view.InputStageNumbers()
 
-	cars, err := domain.MakeCars(numCars)
-	if err != nil {
-		fmt.Println(err)
-	}
+	cars, err := domain.MakeCars(carNames)
 
 	stages, err := domain.MakeStage(numStage)
 	if err != nil {

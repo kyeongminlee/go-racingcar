@@ -3,16 +3,24 @@ package view
 import "fmt"
 
 var (
-	numCars   int
+	carNames  string
 	numRounds int
 )
 
-func InputCarNumbers() int {
-	fmt.Println("자동차 대수는 몇 대 인가요?")
-	fmt.Scanln(&numCars)
+// func InputCarNumbers() int {
+// 	fmt.Println("자동차 대수는 몇 대 인가요?")
+// 	fmt.Scanln(&numCars)
+// 	fmt.Println()
+
+// 	return numCars
+// }
+
+func InputCarNames() string {
+	fmt.Println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).")
+	fmt.Scanln(&carNames)
 	fmt.Println()
 
-	return numCars
+	return carNames
 }
 
 func InputStageNumbers() int {
