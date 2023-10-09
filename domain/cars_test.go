@@ -71,7 +71,7 @@ func TestFindWinner(t *testing.T) {
 	tests := []struct {
 		description string
 		cars        Cars
-		expected    []Car
+		expected    []string
 	}{
 		{
 			description: "Single winner",
@@ -80,9 +80,7 @@ func TestFindWinner(t *testing.T) {
 				Car{name: "Car2", position: 3},
 				Car{name: "Car3", position: 1},
 			},
-			expected: Cars{
-				Car{name: "Car2", position: 3},
-			},
+			expected: []string{"Car2"},
 		},
 		{
 			description: "Multiple winners",
@@ -92,10 +90,7 @@ func TestFindWinner(t *testing.T) {
 				Car{name: "Car3", position: 3},
 				Car{name: "Car4", position: 1},
 			},
-			expected: Cars{
-				Car{name: "Car2", position: 3},
-				Car{name: "Car3", position: 3},
-			},
+			expected: []string{"Car2", "Car3"},
 		},
 	}
 
@@ -109,9 +104,9 @@ func TestFindWinner(t *testing.T) {
 			}
 
 			// 우승자의 이름과 위치 검증
-			for i, car := range result {
-				if car.name != test.expected[i].name || car.position != test.expected[i].position {
-					t.Errorf("Expected winner %v, but got %v", test.expected[i], car)
+			for i, name := range result {
+				if name != test.expected[i] {
+					t.Errorf("Expected winner %v, but got %v", test.expected[i], name)
 				}
 			}
 		})

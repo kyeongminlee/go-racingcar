@@ -44,17 +44,17 @@ func (c Cars) Run(movementStrategy MovementStrategy) Cars {
 	return c
 }
 
-func (c Cars) FindWinner() Cars {
+func (c Cars) FindWinner() []string {
 	var maxPosition int
-	var winnerCars []Car
+	var winnerCars []string
 
 	for _, car := range c {
 		if maxPosition < car.position {
 			maxPosition = car.position
-			winnerCars = []Car{car}
+			winnerCars = []string{car.GetName()}
 
 		} else if maxPosition == car.position {
-			winnerCars = append(winnerCars, car)
+			winnerCars = append(winnerCars, car.GetName())
 		}
 	}
 

@@ -30,4 +30,5 @@ func main() {
 		view.PrintCarsStatus(cars, *stages)
 	}
 
+	view.PrintWinners(cars.FindWinner())
 }

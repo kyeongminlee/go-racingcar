@@ -3,9 +3,11 @@ package view
 import (
 	"fmt"
 	"racingcar/domain"
+	"strings"
 )
 
 var MOVEMENT = "-"
+var DELIMITER = ", "
 
 func PrintResultMention() {
 	fmt.Println("======= 실행 결과 =======")
@@ -25,4 +27,8 @@ func printCarStatus(carPosition int) {
 		fmt.Print(MOVEMENT)
 	}
 	fmt.Println()
+}
+
+func PrintWinners(carNames []string) {
+	fmt.Printf("%v가 최종 우승했습니다.", strings.Join(carNames, DELIMITER))
 }
