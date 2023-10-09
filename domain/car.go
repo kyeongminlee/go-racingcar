@@ -13,6 +13,10 @@ func (c Car) Run(movementStrategy MovementStrategy) Car {
 	return c
 }
 
+func (c *Car) GetName() string {
+	return c.name
+}
+
 func (c *Car) GetCurrentPosition() int {
 	return c.position
 }

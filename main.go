@@ -11,7 +11,6 @@ import (
 func main() {
 	rand.Seed(time.Now().Unix())
 
-	// numCars := view.InputCarNumbers()
 	carNames := view.InputCarNames()
 	numStage := view.InputStageNumbers()
 
@@ -28,7 +27,7 @@ func main() {
 			break
 		}
 		cars := stages.StartGame(cars, domain.MakeRandomMovement())
-		view.PrintCarsStatus(cars)
+		view.PrintCarsStatus(cars, *stages)
 	}
 
 }

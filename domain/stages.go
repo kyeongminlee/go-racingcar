@@ -36,5 +36,4 @@ func (s *Stages) CurrentStage() int {
 
 func (s *Stages) countDown() {
 	s.stage -= UNIT_STAGE
-	fmt.Printf("Current Stage : %v\n", s.stage)
 }
